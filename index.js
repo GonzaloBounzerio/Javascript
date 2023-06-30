@@ -1,58 +1,34 @@
 
-class prenda { 
-    constructor(id, tipo, talle, precio){
+class fileMovie {
+    constructor(id,title,image,director,year){
         this.id = id;
-        this.tipo = tipo;
-        this.talle = talle;
-        this.precio = precio;
+        this.title = title;
+        this.image = image;
+        this.director = director;
+        this.year = year;
     }
 }
 
-const prendas = [];
+const arrayAllMovies=[]
 
-let prendasDiv = document.getElementById("stock")
+const movie1 = new fileMovie (1,"Star Wars Episodio IV: Una Nueva Esperanza","assets/img/starwars4-portada.jpg","George Lucas",1977)
 
-function ingresoPagina(prendas){
-    for (let prenda of prendas){
-        let nuevoDiv = document.createElement("div")
-        nuevoDiv.className = "content"
-        nuevoDiv.innerHTML = `<div class="prendaStock" id="${prenda.id}">
-                                <div class="data">
-                                    <h5>${prenda.tipo}</h5>
-                                    <h5>${prenda.talle}</h5>
-                                    <h6>${prenda.precio}</h5>
-                                </div>
-                              </div>`
-    prendasDiv.appendChild(nuevoDiv)    
-    }
+arrayAllMovies.push(movie1)
+
+console.log(movie1)
+console.log(arrayAllMovies)
+
+let movies = document.getElementById("containerFav")
+for(let movie of arrayAllMovies){
+let moviesDiv = document.createElement("div")
+moviesDiv.className = "movieCard"
+moviesDiv.innerHTML = `<div class="dataMovie">
+                          <img src="${movie.image}" alt="logo ${movie.title}" width="100px">
+                          <div class="movieTitle" >
+                             <h4>${movie.title}</h4>
+                             <h5>${movie.director}</h5>
+                             <h5>${movie.year}</h5>
+                          </div>
+                       </div>`
+movies.appendChild(moviesDiv)
 }
-
-function ingresaPrenda(){
-    let ingreso=prompt(`¿Qué prenda ingresó?`)
-    let talle = prompt(`¿Qué talle?`)
-    let precio = parseInt(prompt(`Indique precio`))
-    const nuevaPrenda = new prenda(prendas.length+1,ingreso.toUpperCase(),talle.toUpperCase(),precio)
-    prendas.push(nuevaPrenda)
-}
-
-let salirMenu = false
-alert("Bienvenido")
-
-do{
-    let opcion = prompt(`Ingrese la opción deseada
-   1 - Ingresar prendas
-   0 - Salir`)
-   switch (opcion) {
-        case "1":
-            ingresaPrenda();
-            break;
-        case "0":
-            alert("Finalizando programa");
-            salirMenu = true;
-            break;
-        default:
-            alert("Opción invalida. Intente nuevamente");
-            break;
-   }
-}while(!salirMenu)
-ingresoPagina(prendas)
