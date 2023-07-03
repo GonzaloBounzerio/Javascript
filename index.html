@@ -17,25 +17,34 @@
             <div class="buscador">
                 <div class="barraNav">
                     <form class="formBuscador">
-                        <input class="inputBusqueda" type="text" placeholder="Busca para ver">
-                        <span class="iconoBusqueda material-symbols-outlined">search</span>
+                        <input id="inputBusqueda" type="text" placeholder="Busca películas para ver" autocomplete="off">
+                        <span id="iconoBusqueda" class="material-symbols-outlined">search</span>
                     </form>
                 </div>
-            </div>
-        </div>
-    </header>
-    <main>
-        <div class="containerMain">
-            <div class="containerClasesMain">
-                <div class="fav">
-                    <h3 class="subtitulo">Mis favoritas</h3>
-                    <div id="containerFav">
-
+                <div id="lateralNav">
+                    <div class="cerrarSideNav">
+                        <div class="botonCerrarSide">
+                            <span id="btnCerrarSideNav" class="material-symbols-outlined">close</span>
+                        </div>
+                    </div>
+                    <div id="opcionesLateral">
+                        <!-- opciones mincard -->
                     </div>
                 </div>
             </div>
         </div>
+    </header>
+    <main class="containerMain">
+        <div class="fav">
+            <h3 class="subtitulo">Catálogo</h3>
+            <div id="containerFav">
+                <!-- aca irian los frames de movies -->
+            </div>
+        </div>
     </main>
+    <footer>
+        <p>Desarrollado por Gonzalo Bounzerio</p>
+    </footer>
     <script src="index.js"></script>
 </body>
 </html>
