@@ -11,7 +11,7 @@ class fileMovie {
     }
 }
 
-const arrayAllMovies=[]
+let arrayAllMovies=[]
 
 const movie1 = new fileMovie(1,"Star Wars Episodio I: La Amenaza Fantasma","C:/Users/bounz/OneDrive/Escritorio/Curso JS/assets/img/starwars1-portada.jpg","George Lucas",1999)
 const movie2 = new fileMovie(2,"Star Wars Episodio II: La Guerra de los Clones","C:/Users/bounz/OneDrive/Escritorio/Curso JS/assets/img/starwars2-portada.jpg","George Lucas",2002)
@@ -65,9 +65,8 @@ const movie49 = new fileMovie(49,"John Wick","C:/Users/bounz/OneDrive/Escritorio
 const movie50 = new fileMovie(50,"John Wick: capitulo 2","C:/Users/bounz/OneDrive/Escritorio/Curso JS/assets/img/wick2-portada.jpg","Chad Stahelski",2017)
 const movie51 = new fileMovie(51,"John Wick: capitulo 3","C:/Users/bounz/OneDrive/Escritorio/Curso JS/assets/img/wick3-portada.jpg","Chad Stahelski",2019)
 const movie52 = new fileMovie(52,"John Wick: capitulo 4","C:/Users/bounz/OneDrive/Escritorio/Curso JS/assets/img/wick4-portada.jpg","Chad Stahelski",2023)
-
-
-
+const movie53 = new fileMovie(51,"Volver al Futuro 2","C:/Users/bounz/OneDrive/Escritorio/Curso JS/assets/img/backfuture2-portada.jpg","Robert Zemeckis",1989)
+const movie54 = new fileMovie(52,"Volver al Futuro 3","C:/Users/bounz/OneDrive/Escritorio/Curso JS/assets/img/backfuture3-portada.jpg","Robert Zemeckis",1990)
 
 
 
@@ -125,7 +124,30 @@ arrayAllMovies.push(movie49)
 arrayAllMovies.push(movie50)
 arrayAllMovies.push(movie51)
 arrayAllMovies.push(movie52)
+arrayAllMovies.push(movie53)
+arrayAllMovies.push(movie54)
 
 //ordenar las peliculas alfabeticamente por nombre
 
+console.log(arrayAllMovies)
+
+arrayAllMovies = ordenarAlfabeticamenteTitulo(arrayAllMovies)
+
+console.log(arrayAllMovies)
+
+function ordenarAlfabeticamenteTitulo(array){
+    const arrayAlfabetico = [].concat(array)
+    arrayAlfabetico.sort( (a,b) =>{
+       if (a.title > b.title) {
+          return 1
+        }
+        if (a.title < b.title) {
+          //return explicito
+          return -1
+        }
+        // a must be equal to b
+        return 0
+    })
+    return(arrayAlfabetico)
+}
 
