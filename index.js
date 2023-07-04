@@ -1,4 +1,5 @@
 
+
 //abre lateralNav
 let inputMenu = document.getElementById("inputBusqueda")
 inputMenu.onclick = () => {
@@ -61,9 +62,19 @@ function imprime(array){
 
 //seccion de catalogo de favoritos
 
-let arrayFav = []
 let divFav = document.getElementById("containerFav")
 
+let arrayFav = []
+
+let arrayFavEnLS = JSON.parse(localStorage.getItem("array"))
+
+if (arrayFavEnLS){
+    arrayFav = arrayFavEnLS
+    imprimeFav(arrayFav)
+} 
+
+
+//guardar en storage
 
 function agregaFavArray(movieAdd){
 
@@ -73,10 +84,30 @@ function agregaFavArray(movieAdd){
         imprimeFav(arrayFav)
     }else{
         document.getElementById(`agregaFav${movieAdd.id}`).innerHTML=``
-        alert("Ya fue agregada") // hola profe, cuando corrijas esta parte podrias indicarme como hacer para que no se vuelva a imprimir el logo de sumar, para no tener que usar un alert gracias
+        window.scroll({
+            top:0,
+            behavior:'smooth'
+        })
+        let mensajeAgregado = document.createElement("div")
+        mensajeAgregado.className = "mensajeAgregado animate__animated animate__backInUp"
+        mensajeAgregado.innerHTML =`<div class="cuadroMensaje" >
+                                        <h3 class="textoMensaje" >${movieAdd.title} ya fue agregado a Favoritos</h3>
+                                        <div class="cerrarMensaje" >
+                                            <label id="cerrarMensajeAlert${movieAdd.id}" class="material-symbols-outlined">close</label>
+                                        </div>
+                                    </div>`
+        document.body.appendChild(mensajeAgregado)
+        document.getElementById("bodyMain").style.overflowY="hidden"
+
+        let btnCierreMensaje = document.getElementById(`cerrarMensajeAlert${movieAdd.id}`)
+        btnCierreMensaje.onclick = () => {
+            mensajeAgregado.className = "mensajeAgregado animate__animated animate__backOutUp"
+            document.getElementById("bodyMain").style.overflowY="scroll"
+        }
     }
 }        
-    
+  
+
 function imprimeFav(arrayFav){
     divFav.innerHTML=``
     for (let peli of arrayFav){
@@ -100,6 +131,7 @@ function imprimeFav(arrayFav){
                                 </div>
                             </div>`
         divFav.appendChild(nuevoDivFav)
+        localStorage.setItem("array", JSON.stringify(arrayFav))
     
         let btnBorraFav = document.getElementById(`borrarMovie${peli.id}`)
         btnBorraFav.onclick = () => {
@@ -113,3 +145,6 @@ function borrarMoviesFav(indic){
     arrayFav = arrayFav.filter((pelicula) => pelicula.id != indic);
     imprimeFav(arrayFav) 
 }
+
+
+

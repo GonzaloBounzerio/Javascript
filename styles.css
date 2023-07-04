@@ -21,6 +21,10 @@ footer p{
     background-color: azure;
 }
 
+a{
+    text-decoration: none;
+}
+
 div{
     margin: 10px;
 }
@@ -54,12 +58,7 @@ div{
     z-index: 10;
 }
 
-#iconoBusqueda:hover{
-    cursor: progress;
-}
-
 #btnCerrarSideNav{
-    cursor: pointer;
     position: fixed
 }
 
@@ -99,20 +98,23 @@ div{
 }
 
 .minMovieCard{
-    background-color: rgba(240, 248, 255, 0.603);
+    background-color: rgba(240, 248, 255, 0.767);
     display: flex;
-    width: 80%;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
     padding: 0 10px;
     border-radius: 15px;
 }
 
 
 .imagenMiniCard{
+    margin: 0;
     width: 30%;
 }
 
 .imagenMiniCard img{
-    width: 60px
+    width: 60px;
 }
 
 .dataMiniCard{
@@ -122,14 +124,15 @@ div{
     align-items: center;
 }
 
+.btnMiniCard{
+    position: relative;
+    right: 10;
+}
+
 .tituloHeader{
     color: rgb(230, 191, 87);
     font-size: 40px;
     text-shadow: -2px 7px 4px rgb(0, 0, 0);
-}
-
-#agregaFav{
-    cursor: pointer;
 }
 
 .fav{
@@ -139,9 +142,10 @@ div{
 
 .subtitulo{
     font-size: 35px;
-    margin-top: 20px;
+    margin-top: 0;
     color: rgb(230, 191, 87);
     text-shadow: -2px 7px 4px rgb(0, 0, 0);
+    display: inline;
 }
 
 .movieCard{
@@ -199,5 +203,46 @@ div{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap:wrap;
+}
+
+.mensajeAgregado{
+    z-index: 12;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;    
+}
+
+.cuadroMensaje{
+    border: 1px solid honeydew;
+    background-color: rgba(127, 255, 212, 0.623);
+    border-radius: 25px;
+    width: 70%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.material-symbols-outlined{
+    cursor: pointer;
+}
+
+.volverHome{
+    font-size: 50px;
+}
+
+#catalogoFull{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap:wrap;
 }
