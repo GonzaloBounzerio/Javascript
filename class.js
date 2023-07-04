@@ -1,3 +1,6 @@
+
+//archivo JS donde se generan als clases y ctes con las que trabajo
+
 class fileMovie {
     constructor(id,title,image,director,year){
         this.id = id;

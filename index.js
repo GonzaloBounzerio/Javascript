@@ -29,6 +29,7 @@ function busquedaRes(buscado,array){
         imprime(busqueda)
 }
 
+//imprime miniCards en la barrita de navegacion
 
 function imprime(array){
     for (let movies of array){
@@ -58,12 +59,15 @@ function imprime(array){
     }
 }
 
+//seccion de catalogo de favoritos
+
 let arrayFav = []
 let divFav = document.getElementById("containerFav")
 
+
 function agregaFavArray(movieAdd){
 
-    let movieAgregada = arrayFav.find((elem) => elem.id == movieAdd.id)
+    let movieAgregada = arrayFav.find((elem) => elem.title == movieAdd.title)
     if (movieAgregada == undefined){
         arrayFav.push(movieAdd)
         imprimeFav(arrayFav)
@@ -73,42 +77,39 @@ function agregaFavArray(movieAdd){
     }
 }        
     
-    function imprimeFav(arrayFav){
-        divFav.innerHTML=``
-        for (let peli of arrayFav){
-            let nuevoDivFav = document.createElement("div")
-            nuevoDivFav.className="movieCard"
-            nuevoDivFav.innerHTML=`<div class="dataMovie" id="${peli.id}">
-                                    <div class="imagenMovie">
-                                        <img src="${peli.image}" alt="logo ${peli.title}" width="80%">
-                                    </div>
-                                    <div class="containerData">
-                                        <div class="barraData">
-                                            <div class="movieTitle" >
-                                                <h4>${peli.title}</h4>
-                                                <h5>${peli.director}</h5>
-                                                <h5>${peli.year}</h5>
-                                            </div>
-                                            <div class="botonMovie" >
-                                                <label id="borrarMovie${peli.id}" class="botonBorraFav material-symbols-outlined">close</label>
-                                            </div>
+function imprimeFav(arrayFav){
+    divFav.innerHTML=``
+    for (let peli of arrayFav){
+        let nuevoDivFav = document.createElement("div")
+        nuevoDivFav.className="movieCard"
+        nuevoDivFav.innerHTML=`<div class="dataMovie" id="${peli.id}">
+                                <div class="imagenMovie">
+                                    <img src="${peli.image}" alt="logo ${peli.title}" width="80%">
+                                </div>
+                                <div class="containerData">
+                                    <div class="barraData">
+                                        <div class="movieTitle" >
+                                            <h4>${peli.title}</h4>
+                                            <h5>${peli.director}</h5>
+                                            <h5>${peli.year}</h5>
+                                        </div>
+                                        <div class="botonMovie" >
+                                            <label id="borrarMovie${peli.id}" class="botonBorraFav material-symbols-outlined">close</label>
                                         </div>
                                     </div>
-                                </div>`
-            divFav.appendChild(nuevoDivFav)
-        
-            let btnBorraFav = document.getElementById(`borrarMovie${peli.id}`)
-            btnBorraFav.onclick = () => {
-                borraArrayFav(arrayFav,peli.id)
-            }
-        }  
-    }
+                                </div>
+                            </div>`
+        divFav.appendChild(nuevoDivFav)
+    
+        let btnBorraFav = document.getElementById(`borrarMovie${peli.id}`)
+        btnBorraFav.onclick = () => {
+                borrarMoviesFav(peli.id)
+        }
+    }  
+}
 
-
-//borraFav
-
-function borraArrayFav(arrayFav,num){
-    arrayFav = arrayFav.filter(pelicula => pelicula.id != `${num}`);
-    console.log(arrayFav)
-    imprimeFav(arrayFav)            //cuando borro no puedo volver a agregarla, idce que ya existe el id, por que es asi?
+//borra favs
+function borrarMoviesFav(indic){
+    arrayFav = arrayFav.filter((pelicula) => pelicula.id != indic);
+    imprimeFav(arrayFav) 
 }

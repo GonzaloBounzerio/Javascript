@@ -124,7 +124,7 @@ div{
 
 .tituloHeader{
     color: rgb(230, 191, 87);
-    font-size: 2rem;
+    font-size: 40px;
     text-shadow: -2px 7px 4px rgb(0, 0, 0);
 }
 
@@ -138,7 +138,7 @@ div{
 }
 
 .subtitulo{
-    font-size: 25px;
+    font-size: 35px;
     margin-top: 20px;
     color: rgb(230, 191, 87);
     text-shadow: -2px 7px 4px rgb(0, 0, 0);
