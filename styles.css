@@ -128,7 +128,7 @@ div{
     text-shadow: -2px 7px 4px rgb(0, 0, 0);
 }
 
-.agregaFav{
+#agregaFav{
     cursor: pointer;
 }
 
@@ -194,10 +194,6 @@ div{
     text-align: center;
 }
 
-.borrarMovie{
-    height: 20%;
-    cursor: pointer;
-}
 
 #containerFav{
     display: flex;
