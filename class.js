@@ -13,7 +13,7 @@ class fileMovie {
 
 let arrayAllMovies=[]
 
-const movie1 = new fileMovie(1,"Star Wars Episodio I: La Amenaza Fantasma","/assets/img/starwars1-portada.jpg","George Lucas",1999)
+const movie1 = new fileMovie(1,"Star Wars Episodio I: La Amenaza Fantasma","assets/img/starwars1-portada.jpg","George Lucas",1999)
 const movie2 = new fileMovie(2,"Star Wars Episodio II: La Guerra de los Clones","/assets/img/starwars2-portada.jpg","George Lucas",2002)
 const movie3 = new fileMovie(3,"Star Wars Episodio III: La Venganza de los Sith","/assets/img/starwars3-portada.jpg","George Lucas",2005)
 const movie4 = new fileMovie(4,"Star Wars Episodio IV: Una Nueva Esperanza","/assets/img/starwars4-portada.jpg","George Lucas",1977)
