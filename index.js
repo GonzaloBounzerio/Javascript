@@ -143,6 +143,7 @@ function imprimeFav(arrayFav){
 //borra favs
 function borrarMoviesFav(indic){
     arrayFav = arrayFav.filter((pelicula) => pelicula.id != indic);
+    localStorage.setItem("array", JSON.stringify(arrayFav))
     imprimeFav(arrayFav) 
 }
 
