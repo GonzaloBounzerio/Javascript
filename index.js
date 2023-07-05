@@ -38,7 +38,7 @@ function imprime(array){
         nuevoDiv.id=`${movies.id}`
         nuevoDiv.className="minMovieCard"
         nuevoDiv.innerHTML=`<div class="imagenMiniCard">
-                                <img src="${movies.image}" alt="logo de ${movies.title}">
+                                <img src="./${movies.image}" alt="logo de ${movies.title}">
                             </div>
                             <div class="dataMiniCard">
                                 <div class="textMiniCard">
@@ -115,7 +115,7 @@ function imprimeFav(arrayFav){
         nuevoDivFav.className="movieCard"
         nuevoDivFav.innerHTML=`<div class="dataMovie" id="${peli.id}">
                                 <div class="imagenMovie">
-                                    <img src="${peli.image}" alt="logo ${peli.title}" width="80%">
+                                    <img src="./${peli.image}" alt="logo ${peli.title}" width="80%">
                                 </div>
                                 <div class="containerData">
                                     <div class="barraData">
