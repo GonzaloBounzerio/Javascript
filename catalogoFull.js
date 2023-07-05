@@ -8,7 +8,7 @@ for (let data of arrayAllMovies){
     nuevoDivCat.className="movieCard"
     nuevoDivCat.innerHTML=`<div class="dataMovie" id="${data.id}">
                             <div class="imagenMovie">
-                                <img src="${data.image}" alt="logo ${data.title}" width="80%">
+                                <img src="../${data.image}" alt="logo ${data.title}" width="80%">
                             </div>
                             <div class="containerData">
                                 <div class="barraData">
