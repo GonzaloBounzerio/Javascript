@@ -129,11 +129,7 @@ arrayAllMovies.push(movie54)
 
 //ordenar las peliculas alfabeticamente por nombre
 
-console.log(arrayAllMovies)
-
 arrayAllMovies = ordenarAlfabeticamenteTitulo(arrayAllMovies)
-
-console.log(arrayAllMovies)
 
 function ordenarAlfabeticamenteTitulo(array){
     const arrayAlfabetico = [].concat(array)

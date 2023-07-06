@@ -146,6 +146,3 @@ function borrarMoviesFav(indic){
     localStorage.setItem("array", JSON.stringify(arrayFav))
     imprimeFav(arrayFav) 
 }
-
-
-
