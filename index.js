@@ -80,30 +80,40 @@ function agregaFavArray(movieAdd){
 
     let movieAgregada = arrayFav.find((elem) => elem.title == movieAdd.title)
     if (movieAgregada == undefined){
+        if (arrayFav.length == 0){
+            Toastify({
+                text: `Felicitaciones, agregaste la primer película a favoritos`,
+                duration: 3000,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    width: "auto",
+                    height: "auto",
+                    padding: "5px",
+                    textAlign: "center",
+                    fontSize: "30px"
+                },
+            }).showToast();
+        }
         arrayFav.push(movieAdd)
         imprimeFav(arrayFav)
     }else{
-        document.getElementById(`agregaFav${movieAdd.id}`).innerHTML=``
-        window.scroll({
-            top:0,
-            behavior:'smooth'
-        })
-        let mensajeAgregado = document.createElement("div")
-        mensajeAgregado.className = "mensajeAgregado animate__animated animate__backInUp"
-        mensajeAgregado.innerHTML =`<div class="cuadroMensaje" >
-                                        <h3 class="textoMensaje" >${movieAdd.title} ya fue agregado a Favoritos</h3>
-                                        <div class="cerrarMensaje" >
-                                            <label id="cerrarMensajeAlert${movieAdd.id}" class="material-symbols-outlined">close</label>
-                                        </div>
-                                    </div>`
-        document.body.appendChild(mensajeAgregado)
-        document.getElementById("bodyMain").style.overflowY="hidden"
-
-        let btnCierreMensaje = document.getElementById(`cerrarMensajeAlert${movieAdd.id}`)
-        btnCierreMensaje.onclick = () => {
-            mensajeAgregado.className = "mensajeAgregado animate__animated animate__backOutUp"
-            document.getElementById("bodyMain").style.overflowY="scroll"
-        }
+        Toastify({
+            text: `${movieAdd.title} ya fue agregada`,
+            duration: 4000,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                width: "400px",
+                height: "auto",
+                padding: "5px",
+                textAlign: "center",
+                fontSize: "25px"
+            },
+        }).showToast();
     }
 }        
   
