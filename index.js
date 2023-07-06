@@ -1,5 +1,4 @@
 
-
 //abre lateralNav
 let inputMenu = document.getElementById("inputBusqueda")
 inputMenu.onclick = () => {
@@ -60,6 +59,51 @@ function imprime(array){
     }
 }
 
+//primer inicio
+
+function primerAyudaUso(){
+   if ((JSON.parse(localStorage.getItem("array")) == undefined)){    
+        ayudaUso("Bienvenido")
+   }
+}
+
+function ayudaUso(indic){ //el indicador dice "Bienvenido" si entra por primera vez y "Ayuda" si clickea esa opcion
+    Swal.fire({
+        title: `${indic}`,
+        text: 'A continuación te explico cómo funciona esta página',
+        icon: 'info',
+        confirmButtonText: 'Vamos!'
+    }).then((result) => {
+        Swal.fire({
+            title: 'Instrucciones',
+            text: 'Elige una película en el buscador',
+            icon: 'info',
+            confirmButtonText: 'Siguiente'
+        }).then((result) => {
+            Swal.fire({
+                title: 'Instrucciones',
+                text: 'Agregala a favoritos, cada vez que entres, la verás más rápido',
+                icon: 'info',
+                confirmButtonText: 'Siguiente'
+            }).then((result) => {
+                Swal.fire({
+                    title: 'Instrucciones',
+                    text: 'Además, podés ver todo el catálogo con nuetras opciones',
+                    icon: 'success',
+                    confirmButtonText: 'Listo!'
+                })
+    })
+    })
+    })
+}  
+
+//boton ayuda
+
+let btnAyuda = document.getElementById("btnAyuda")
+btnAyuda.onclick = () => {
+    ayudaUso("Ayuda")
+}
+
 //seccion de catalogo de favoritos
 
 let divFav = document.getElementById("containerFav")
@@ -80,7 +124,7 @@ function agregaFavArray(movieAdd){
 
     let movieAgregada = arrayFav.find((elem) => elem.title == movieAdd.title)
     if (movieAgregada == undefined){
-        if (arrayFav.length == 0){
+        if (JSON.parse(localStorage.getItem("array")) == undefined){
             Toastify({
                 text: `Felicitaciones, agregaste la primer película a favoritos`,
                 duration: 3000,

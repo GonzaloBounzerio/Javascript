@@ -218,3 +218,7 @@ div{
     justify-content: center;
     flex-wrap:wrap;
 }
+
+#btnAyuda{
+    color: aliceblue;
+}
