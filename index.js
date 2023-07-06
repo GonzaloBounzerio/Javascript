@@ -84,8 +84,8 @@ function agregaFavArray(movieAdd){
             Toastify({
                 text: `Felicitaciones, agregaste la primer película a favoritos`,
                 duration: 3000,
-                gravity: "top", // `top` or `bottom`
-                position: "right", // `left`, `center` or `right`
+                gravity: "top", 
+                position: "right", 
                 style: {
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                     width: "auto",
@@ -103,8 +103,8 @@ function agregaFavArray(movieAdd){
             text: `${movieAdd.title} ya fue agregada`,
             duration: 4000,
             close: true,
-            gravity: "top", // `top` or `bottom`
-            position: "right", // `left`, `center` or `right`
+            gravity: "top",
+            position: "right", 
             style: {
                 background: "linear-gradient(to right, #00b09b, #96c93d)",
                 width: "400px",
