@@ -13,7 +13,7 @@ function abreTrailer(indic){
             icon: 'error',
             position: `top`,
             toast: `center`,
-            confirmButtonText: 'Ok :('
+            confirmButtonText: 'Ok :(',
         })
     }else{
         Swal.fire({
@@ -21,6 +21,7 @@ function abreTrailer(indic){
             text: 'El siguiente link te llevará a verlo',
             icon: 'info',
             position: `top`,
+            toast: `center`,
             showCancelButton: `true`,
             cancelButtonText: `Mejor más tarde`,
             confirmButtonText: 'Vamos!'

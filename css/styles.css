@@ -8,7 +8,7 @@
 }
 
 body{
-    background-image: url(.//assets/img/background-cinema.jpg);
+    background-image: url(/assets/img/background-cinema.jpg);
     backdrop-filter: blur(5px);
     margin: 0 80px;
     min-height: 90vh;
