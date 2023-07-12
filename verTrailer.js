@@ -7,7 +7,7 @@ function abreTrailer(indic){
         top: 0,
         behavior: 'smooth'
         })  
-    if (data.trailer == undefined){
+    if (data.trailer == ``){
         Swal.fire({
             title: `${data.title} no tiene trailer disponible`,
             icon: 'error',
