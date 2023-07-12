@@ -1,4 +1,6 @@
 
+let arrayFullEnLS = JSON.parse(localStorage.getItem("arrayFull"))
+
 //abre lateralNav
 let inputMenu = document.getElementById("inputBusqueda")
 inputMenu.onclick = () => {
@@ -19,14 +21,18 @@ inputMenu.addEventListener("input",() =>{
     if (valueBuscado == ""){
         moviesMinDiv.innerHTML=``
     } else {
-    busquedaRes(valueBuscado,arrayAllMovies)}
+    busquedaRes(valueBuscado,arrayFullEnLS)}
 })
 
 function busquedaRes(buscado,array){
     let busqueda = array.filter(
         (dato) => dato.title.toLowerCase().includes(buscado.toLowerCase()) )
         moviesMinDiv.innerHTML=``
-        imprime(busqueda)
+        if (busqueda.length == 0){
+            moviesMinDiv.innerHTML=`No se encontraron resultados que coincidan con la búsqueda`
+        }else{
+            imprime(busqueda)
+        }
 }
 
 //imprime miniCards en la barrita de navegacion

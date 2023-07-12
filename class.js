@@ -65,8 +65,8 @@ const movie49 = new fileMovie(49,"John Wick","assets/img/wick1-portada.jpg","Cha
 const movie50 = new fileMovie(50,"John Wick: capitulo 2","assets/img/wick2-portada.jpg","Chad Stahelski",2017)
 const movie51 = new fileMovie(51,"John Wick: capitulo 3","assets/img/wick3-portada.jpg","Chad Stahelski",2019)
 const movie52 = new fileMovie(52,"John Wick: capitulo 4","assets/img/wick4-portada.jpg","Chad Stahelski",2023)
-const movie53 = new fileMovie(51,"Volver al Futuro 2","assets/img/backfuture2-portada.jpg","Robert Zemeckis",1989)
-const movie54 = new fileMovie(52,"Volver al Futuro 3","assets/img/backfuture3-portada.jpg","Robert Zemeckis",1990)
+const movie53 = new fileMovie(53,"Volver al Futuro 2","assets/img/backfuture2-portada.jpg","Robert Zemeckis",1989)
+const movie54 = new fileMovie(54,"Volver al Futuro 3","assets/img/backfuture3-portada.jpg","Robert Zemeckis",1990)
 
 
 
@@ -127,23 +127,39 @@ arrayAllMovies.push(movie52)
 arrayAllMovies.push(movie53)
 arrayAllMovies.push(movie54)
 
-//ordenar las peliculas alfabeticamente por nombre
-
-arrayAllMovies = ordenarAlfabeticamenteTitulo(arrayAllMovies)
-
-function ordenarAlfabeticamenteTitulo(array){
-    const arrayAlfabetico = [].concat(array)
-    arrayAlfabetico.sort( (a,b) =>{
-       if (a.title > b.title) {
-          return 1
-        }
-        if (a.title < b.title) {
-          //return explicito
-          return -1
-        }
-        // a must be equal to b
-        return 0
-    })
-    return(arrayAlfabetico)
+if (!JSON.parse(localStorage.getItem("arrayFull"))){
+    localStorage.setItem("arrayFull", JSON.stringify(arrayAllMovies))
 }
 
+//agregado movies
+
+function agregaMoviesCat(){
+    let formAgrega = document.getElementById("formularioAgregaMovie")
+    formAgrega.onsubmit = (event) => {
+        event.preventDefault()
+        let nombreMovie = document.getElementById("inputTitulo")
+        let directorMovie = document.getElementById("inputDirector")
+        let estrenoMovie = document.getElementById("inputEstreno")
+        let nuevoID = JSON.parse(localStorage.getItem("arrayFull"))
+        const nuevaMovie = new fileMovie(nuevoID.length+1,nombreMovie.value,"assets/img/default.png",directorMovie.value,estrenoMovie.value)
+        nuevoID.push(nuevaMovie)
+        Toastify({
+            text: `"${nombreMovie.value}" se ha agregado al catálogo`,
+            duration: 1500,
+            gravity: "top", 
+            position: "right", 
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                width: "auto",
+                height: "auto",
+                padding: "5px",
+                textAlign: "center",
+                fontSize: "30px"
+            },
+        }).showToast();
+        nombreMovie.value=``
+        directorMovie.value=``
+        estrenoMovie.value=``
+        localStorage.setItem("arrayFull", JSON.stringify(nuevoID))
+    }
+}

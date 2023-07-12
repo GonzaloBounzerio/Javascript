@@ -25,14 +25,27 @@
         </div>
         <div class="subtituloCatalogo">
             <h3 class="subtitulo">Catálogo completo:</h3>
+            <select id="selectorOrden">
+                <option selected>Orden predeterminado</option>
+                <option value="1">Alfabeticamente</option>
+                <option value="2">Año de estreno</option>
+              </select>
         </div>
-        <div id="catalogoFull">
+        <div class="containerMovies">
+            <div id="catalogoFull">
+
+            </div>
+            <div class="containerBtn">
+                <a href="agregaMovie.html">
+                    <label id="btnAgregarCat" class="material-symbols-outlined">add</label>
+                </a>
+            </div>
         </div>
     </main>
     <footer>
         <p>Desarrollado por Gonzalo Bounzerio</p>
     </footer>
-    <script src="../class.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="..//catalogoFull.js"></script>
 </body>
 </html>
