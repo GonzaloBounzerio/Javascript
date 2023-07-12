@@ -64,3 +64,44 @@ function ordenarMenorMayor(array){
     menorMayor.sort((a,b) => a.year - b.year)
     muestraCatalogo(menorMayor)
 }
+
+function ayudaUso(indic){ //el indicador dice "Bienvenido" si entra por primera vez y "Ayuda" si clickea esa opcion
+    Swal.fire({
+        title: `${indic}`,
+        text: 'A continuación te explico cómo funciona esta página',
+        icon: 'info',
+        position: "top",
+        confirmButtonText: 'Vamos!'
+    }).then((result) => {
+        Swal.fire({
+            title: 'Instrucciones',
+            text: 'Navega por el catálogo',
+            icon: 'info',
+            position: "top",
+            confirmButtonText: 'Siguiente'
+        }).then((result) => {
+            Swal.fire({
+                title: 'Instrucciones',
+                text: 'Puedes elegir el orden de las películas',
+                icon: 'info',
+                position: "top",
+                confirmButtonText: 'Siguiente'
+            }).then((result) => {
+                Swal.fire({
+                    title: 'Instrucciones',
+                    text: 'Además, podés agregar nuevas películas clickeando el boton inferior derecho',
+                    icon: 'success',
+                    position: "top",
+                    confirmButtonText: 'Listo!'
+                })
+    })
+    })
+    })
+}  
+
+//boton ayuda
+
+let btnAyuda = document.getElementById("btnAyuda")
+btnAyuda.onclick = () => {
+    ayudaUso("Ayuda")
+}
