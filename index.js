@@ -48,7 +48,6 @@ function imprime(array){
                             <div class="dataMiniCard">
                                 <div class="textMiniCard">
                                     <h4>${movies.title}</h4>
-                                    <h4>${movies.year}</h4>
                                 </div>
                                 <div class="btnMiniCard">
                                     <label id="agregaFav${movies.id}" class="material-symbols-outlined">add</label>
@@ -175,7 +174,7 @@ function imprimeFav(arrayFav){
         nuevoDivFav.className="movieCard"
         nuevoDivFav.innerHTML=`<div class="dataMovie" id="${peli.id}">
                                 <div class="imagenMovie">
-                                    <img src="./${peli.image}" alt="logo ${peli.title}" width="80%">
+                                    <img id="imagen${peli.id}" src="./${peli.image}" alt="logo ${peli.title}" width="80%">
                                 </div>
                                 <div class="containerData">
                                     <div class="barraData">
@@ -183,6 +182,7 @@ function imprimeFav(arrayFav){
                                             <h4>${peli.title}</h4>
                                             <h5>${peli.director}</h5>
                                             <h5>${peli.year}</h5>
+                                            <h6>${peli.val}% Rotten Tomatoes</h6>
                                         </div>
                                         <div class="botonMovie" >
                                             <label id="borrarMovie${peli.id}" class="botonBorraFav material-symbols-outlined">close</label>
@@ -192,6 +192,12 @@ function imprimeFav(arrayFav){
                             </div>`
         divFav.appendChild(nuevoDivFav)
         localStorage.setItem("array", JSON.stringify(arrayFav))
+
+        let muestraTrailer = document.getElementById(`imagen${peli.id}`)
+        muestraTrailer.style.cursor="pointer"
+        muestraTrailer.onclick = () => {
+            abreTrailer(`${peli.id}`)
+        }
     
         let btnBorraFav = document.getElementById(`borrarMovie${peli.id}`)
         btnBorraFav.onclick = () => {

@@ -264,7 +264,7 @@ div{
     margin-top: 50px;
     display: grid;
     grid-template-columns: 2fr 2fr;
-    grid-template-rows: repeat(2,1fr);
+    grid-template-rows: repeat(3,1fr);
 }
 
 #inputTitulo{
@@ -282,8 +282,18 @@ div{
     grid-column: 1;
 }
 
-#btnEnviar{
+#inputValoracion{
     grid-row: 2;
+    grid-column: 2;
+}
+
+#inputTrailer{
+    grid-row: 3;
+    grid-column: 1;
+}
+
+#btnEnviar{
+    grid-row: 3;
     grid-column: 2;
     font-size: 30px;
     width: 500px;
@@ -294,6 +304,10 @@ div{
     font-size: 30px;
     width: 500px;
     margin: 15px;
+}
+
+#formularioAgregaMovie button:hover{
+    background-color: aquamarine;
 }
 
 #formularioAgregaMovie input:hover{

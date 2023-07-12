@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1ra Preentrega Bounzerio</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="..//styles.css">
@@ -35,9 +36,11 @@
         </div>
         <div class="containerAgregaMovie">
             <form id="formularioAgregaMovie">
-                <input id="inputTitulo" type="text" placeholder="Título" required>
-                <input id="inputDirector" type="text" placeholder="Director" required>
-                <input id="inputEstreno" min="1895" max="2023" type="number" placeholder="Año de lanzamiento" required>
+                <input id="inputTitulo" type="text" placeholder="Título" required autocomplete="off">
+                <input id="inputDirector" type="text" placeholder="Director" required autocomplete="off">
+                <input id="inputEstreno" min="1895" max="2023" type="number" placeholder="Año de lanzamiento" required autocomplete="off">
+                <input id="inputValoracion" min="0" max="100" type="text" placeholder="Valoración RottenTomatoes (opcional)" autocomplete="off">
+                <input id="inputTrailer" type="text" placeholder="URL trailer (opcional)" autocomplete="off">
                 <button type="submit" id="btnEnviar" value="Submit">Agregar</button>
             </form>
         </div>
