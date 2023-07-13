@@ -6,16 +6,7 @@ function abreTrailer(indic){
     window.scroll({
         top: 0,
         behavior: 'smooth'
-        })  
-    if (data.trailer == ``){
-        Swal.fire({
-            title: `${data.title} no tiene trailer disponible`,
-            icon: 'error',
-            position: `top`,
-            toast: `center`,
-            confirmButtonText: 'Ok :(',
-        })
-    }else{
+        }) 
         Swal.fire({
             title: `Hecha un vistazo al trailer de ${data.title}`,
             text: 'El siguiente link te llevará a verlo',
@@ -29,6 +20,5 @@ function abreTrailer(indic){
             if (result.isConfirmed){
                 window.open(data.trailer,'_blank')
             }
-        })
-    }
+            })
 }
