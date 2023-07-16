@@ -1,106 +1,13 @@
 
-let arrayFullEnLS = JSON.parse(localStorage.getItem("arrayFull"))
-
-//abre lateralNav
-let inputMenu = document.getElementById("inputBusqueda")
-inputMenu.onclick = () => {
-    document.getElementById("lateralNav").style.display="flex"
-    document.getElementById("iconoBusqueda").style.visibility="hidden"
-}
-//cierra lateralNav
-let btnCierraSideNav = document.getElementById("btnCerrarSideNav")
-btnCierraSideNav.onclick = () => {
-    document.getElementById("iconoBusqueda").style.visibility="visible"
-    document.getElementById("lateralNav").style.display="none"
-}
-let moviesMinDiv = document.getElementById("opcionesLateral")
-
-//buscador lateral
-inputMenu.addEventListener("input",() =>{
-    let valueBuscado = inputMenu.value
-    if (valueBuscado == ""){
-        moviesMinDiv.innerHTML=``
-    } else {
-    busquedaRes(valueBuscado,arrayFullEnLS)}
-})
-
-function busquedaRes(buscado,array){
-    let busqueda = array.filter(
-        (dato) => dato.title.toLowerCase().includes(buscado.toLowerCase()) )
-        moviesMinDiv.innerHTML=``
-        if (busqueda.length == 0){
-            moviesMinDiv.innerHTML=`No se encontraron resultados que coincidan con la búsqueda`
-        }else{
-            imprime(busqueda)
-        }
-}
-
-//imprime miniCards en la barrita de navegacion
-
-function imprime(array){
-    for (let movies of array){
-        let nuevoDiv = document.createElement("div")
-        nuevoDiv.id=`${movies.id}`
-        nuevoDiv.className="minMovieCard"
-        nuevoDiv.innerHTML=`<div class="imagenMiniCard">
-                                <img src="./${movies.image}" alt="logo de ${movies.title}">
-                            </div>
-                            <div class="dataMiniCard">
-                                <div class="textMiniCard">
-                                    <h4>${movies.title}</h4>
-                                </div>
-                                <div class="btnMiniCard">
-                                    <label id="agregaFav${movies.id}" class="material-symbols-outlined">add</label>
-                                </div>
-                            </div>`
-    moviesMinDiv.appendChild(nuevoDiv)
-
-    let btnAgregaFav = document.getElementById(`agregaFav${movies.id}`)
-    btnAgregaFav.addEventListener("click", () => {
-        document.getElementById(`agregaFav${movies.id}`).innerHTML=``
-        agregaFavArray(movies)
-    })
-
-    }
-}
 
 //primer inicio
 
 function primerAyudaUso(){
-   if ((JSON.parse(localStorage.getItem("array")) == undefined)){    
-        ayudaUso("Bienvenido")
-   }
-}
-
-function ayudaUso(indic){ //el indicador dice "Bienvenido" si entra por primera vez y "Ayuda" si clickea esa opcion
-    Swal.fire({
-        title: `${indic}`,
-        text: 'A continuación te explico cómo funciona esta página',
-        icon: 'info',
-        confirmButtonText: 'Vamos!'
-    }).then((result) => {
-        Swal.fire({
-            title: 'Instrucciones',
-            text: 'Elige una película en el buscador',
-            icon: 'info',
-            confirmButtonText: 'Siguiente'
-        }).then((result) => {
-            Swal.fire({
-                title: 'Instrucciones',
-                text: 'Agregala a favoritos, cada vez que entres, la verás más rápido',
-                icon: 'info',
-                confirmButtonText: 'Siguiente'
-            }).then((result) => {
-                Swal.fire({
-                    title: 'Instrucciones',
-                    text: 'Además, podés ver todo el catálogo con nuetras opciones',
-                    icon: 'success',
-                    confirmButtonText: 'Listo!'
-                })
-    })
-    })
-    })
-}  
+    if ((JSON.parse(localStorage.getItem("visited")) == undefined)){    
+         ayudaUso("Bienvenido")
+         localStorage.setItem("visited", JSON.stringify(true))
+    }
+ }
 
 //boton ayuda
 
@@ -109,70 +16,104 @@ btnAyuda.onclick = () => {
     ayudaUso("Ayuda")
 }
 
-//seccion de catalogo de favoritos
+function ayudaUso(indic){ //el indicador dice "Bienvenido" si entra por primera vez y "Ayuda" si clickea esa opcion
+    window.scroll({
+        top: 0,
+        behavior: 'smooth'
+      })
+    Swal.fire({
+        title: `${indic}`,
+        text: 'A continuación te explico cómo funciona esta página',
+        icon: 'info',
+        position: `top`,
+        confirmButtonText: 'Vamos!'
+    }).then((result) => {
+        Swal.fire({
+            title: 'Instrucciones',
+            text: 'Elige una película en el buscador',
+            icon: 'info',
+            position: `top`,
+            confirmButtonText: 'Siguiente'
+        }).then((result) => {
+            Swal.fire({
+                title: 'Instrucciones',
+                text: 'Agregala a favoritos, cada vez que entres, la podrás ver más rápido',
+                icon: 'info',
+                position: `top`,
+                confirmButtonText: 'Siguiente'
+            }).then((result) => {
+                Swal.fire({
+                    title: 'Instrucciones',
+                    text: 'Además, podés agregar más opciones al catálogo',
+                    icon: 'success',
+                    position: `top`,
+                    confirmButtonText: 'Listo!'
+                })
+    })
+    })
+    })
+}  
 
-let divFav = document.getElementById("containerFav")
-
-let arrayFav = []
-
-let arrayFavEnLS = JSON.parse(localStorage.getItem("array"))
-
-if (arrayFavEnLS){
-    arrayFav = arrayFavEnLS
-    imprimeFav(arrayFav)
-} 
-
-
-//guardar en storage
-
-function agregaFavArray(movieAdd){
-
-    let movieAgregada = arrayFav.find((elem) => elem.title == movieAdd.title)
-    if (movieAgregada == undefined){
-        if (JSON.parse(localStorage.getItem("array")) == undefined){
-            Toastify({
-                text: `Felicitaciones, agregaste la primer película a favoritos`,
-                duration: 3000,
-                gravity: "top", 
-                position: "right", 
-                style: {
-                    background: "linear-gradient(to right, #00b09b, #96c93d)",
-                    width: "auto",
-                    height: "auto",
-                    padding: "5px",
-                    textAlign: "center",
-                    fontSize: "30px"
-                },
-            }).showToast();
+// adjunta data del json
+    fetch(`./data.json`)
+        .then ((resp) => resp.json())
+        .then ((data) => {
+        
+        for(let pelicula of data){
+            let nuevaPeli = new fileMovie(pelicula.id,pelicula.title,pelicula.image,pelicula.director,pelicula.year,pelicula.trailer,pelicula.val)
+            arrayAllMovies.push(nuevaPeli)
         }
-        arrayFav.push(movieAdd)
-        imprimeFav(arrayFav)
-    }else{
-        Toastify({
-            text: `${movieAdd.title} ya fue agregada`,
-            duration: 4000,
-            close: true,
-            gravity: "top",
-            position: "right", 
-            style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-                width: "400px",
-                height: "auto",
-                padding: "5px",
-                textAlign: "center",
-                fontSize: "25px"
-            },
-        }).showToast();
-    }
-}        
-  
+        localStorage.setItem("arrayFull", JSON.stringify(arrayAllMovies))
+        imprimeCat(arrayAllMovies)
+        }) 
 
-function imprimeFav(arrayFav){
-    divFav.innerHTML=``
-    for (let peli of arrayFav){
-        let nuevoDivFav = document.createElement("div")
-        nuevoDivFav.className="movieCard"
-        nuevoDivFav.innerHTML=`<div class="dataMovie" id="${peli.id}">
+
+let arrayAllMovies = [] 
+//
+
+//agrega los agregados
+
+if (localStorage.getItem("agregados")){
+    let agregados = JSON.parse(localStorage.getItem("agregados"))
+    for (let dataNueva of agregados){
+        arrayAllMovies.unshift(dataNueva)
+    }
+}
+
+//buscador
+
+let inputMenu = document.getElementById("inputBusqueda")
+
+let moviesIndexDiv = document.getElementById("containerIndex")
+
+inputMenu.addEventListener("input",() =>{
+    let valueBuscado = inputMenu.value
+    if (valueBuscado == ""){
+        imprimeCat(arrayAllMovies)
+    } else {
+    busquedaRes(valueBuscado,arrayAllMovies)}
+})
+
+function busquedaRes(buscado,array){
+    let busqueda = array.filter(
+        (dato) => dato.title.toLowerCase().includes(buscado.toLowerCase()) )
+        moviesIndexDiv.innerHTML=``
+        if (busqueda.length == 0){
+            let subtituloNoMatch = document.createElement("div")
+            subtituloNoMatch.className = "subtitulo2"
+            subtituloNoMatch.innerHTML=`No se encontraron resultados que coincidan con la búsqueda`
+            moviesIndexDiv.appendChild(subtituloNoMatch)
+        }else{
+            imprimeCat(busqueda)
+        }
+}
+
+function imprimeCat(array){
+    moviesIndexDiv.innerHTML=``
+    for (let peli of array){
+        let nuevoDivCat = document.createElement("div")
+        nuevoDivCat.className="movieCard"
+        nuevoDivCat.innerHTML=`<div class="dataMovie" id="${peli.id}">
                                 <div class="imagenMovie">
                                     <img id="imagen${peli.id}" src="./${peli.image}" alt="logo ${peli.title}" width="80%">
                                 </div>
@@ -184,31 +125,195 @@ function imprimeFav(arrayFav){
                                             <h5>${peli.year}</h5>
                                             <h6>${peli.val}% Rotten Tomatoes</h6>
                                         </div>
-                                        <div class="botonMovie" >
-                                            <label id="borrarMovie${peli.id}" class="botonBorraFav material-symbols-outlined">close</label>
+                                        <div class="botonAgregaFav" >
+                                            <label id="agregaMovie${peli.id}" class="material-symbols-outlined">add</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>`
-        divFav.appendChild(nuevoDivFav)
-        localStorage.setItem("array", JSON.stringify(arrayFav))
+        moviesIndexDiv.appendChild(nuevoDivCat)
 
         let muestraTrailer = document.getElementById(`imagen${peli.id}`)
         muestraTrailer.style.cursor="pointer"
         muestraTrailer.onclick = () => {
             abreTrailer(`${peli.id}`)
         }
-    
-        let btnBorraFav = document.getElementById(`borrarMovie${peli.id}`)
-        btnBorraFav.onclick = () => {
-                borrarMoviesFav(peli.id)
+
+        let btnAgregaFav = document.getElementById(`agregaMovie${peli.id}`)
+        btnAgregaFav.onclick = () => {
+            agregaFav(peli)
+            btnAgregaFav.remove()
         }
     }  
 }
 
-//borra favs
-function borrarMoviesFav(indic){
-    arrayFav = arrayFav.filter((pelicula) => pelicula.id != indic);
-    localStorage.setItem("array", JSON.stringify(arrayFav))
-    imprimeFav(arrayFav) 
+let selectOrden = document.getElementById("selectorOrden")
+selectOrden.addEventListener("change", () => {
+    switch(selectOrden.value){
+       case "1":
+          ordenarAlfabeticamenteTitulo(arrayAllMovies)
+       break
+       case "2":
+          ordenarMenorMayor(arrayAllMovies)
+       break
+       case "3":
+          valoracionRotten(arrayAllMovies)
+       break
+    }
+ }
+ )
+
+//ordenar las peliculas alfabeticamente por nombre
+
+function ordenarAlfabeticamenteTitulo(array){
+    const arrayAlfabetico = [].concat(array)
+    arrayAlfabetico.sort( (a,b) =>{
+    if (a.title.toLowerCase() > b.title.toLowerCase()) {
+        return 1
+        }
+        if (a.title.toLowerCase() < b.title.toLowerCase()) {
+        return -1
+        }
+        return 0
+    })
+    imprimeCat(arrayAlfabetico)
+}
+
+//ordena por año de estreno
+
+function ordenarMenorMayor(array){
+    const menorMayor = [].concat(array)
+    menorMayor.sort((a,b) => a.year - b.year)
+    imprimeCat(menorMayor)
+}
+
+//ordena por claificacion de Rotten Tomatoes
+
+function valoracionRotten(array){
+    const calific = [].concat(array)
+    calific.sort((a,b) => b.val - a.val)
+    imprimeCat(calific)
+}
+
+
+//seccion de catalogo de favoritos
+
+let arrayFav = []
+
+let divFav = document.getElementById("containerFav")
+
+if (localStorage.getItem("arrayFav")){
+    arrayFav = JSON.parse(localStorage.getItem("arrayFav"))
+}
+
+function agregaFav(data){
+    let existe = arrayFav.find( (element) => element.id == data.id)
+    if (existe == undefined){
+        arrayFav.push(data)
+        localStorage.setItem("arrayFav", JSON.stringify(arrayFav))
+        window.scroll({
+            top: 0,
+            behavior: 'smooth'
+          })
+        Toastify({
+            text: `'${data.title}' se agregó a favoritos`,
+            duration: 3000,
+            position: "left", // `left`, `center` or `right`
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+              fontSize:"30px",
+            },
+          }).showToast();
+    }else{
+        window.scroll({
+            top: 0,
+            behavior: 'smooth'
+          })
+        Toastify({
+            text: `'${data.title}' ya fue agregada`,
+            duration: 3000,
+            position: "left", // `left`, `center` or `right`
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+              fontSize:"30px",
+            },
+          }).showToast();
+    }
+}
+
+
+let abreFavs = document.getElementById("btnFav")
+abreFavs.onclick = () => {
+    window.scroll({
+        top: 0,
+        behavior: 'smooth'
+      });
+    document.getElementById("pantallaEmergenteFavs").style.visibility="visible"
+    document.getElementById("pantallaEmergenteFavs").className="animate__animated animate__fadeInLeft"
+    document.getElementById("btnAgregarCat").style.visibility="hidden"
+    document.getElementById("btnFav").style.visibility="hidden"
+    document.getElementById("bodyMain").style.overflow="hidden"
+    imprimeFav(arrayFav)
+}
+
+let cierraFavs = document.getElementById("cierraVentanaFavs")
+cierraFavs.onclick = () => {
+    document.getElementById("pantallaEmergenteFavs").className="animate__animated animate__fadeOutRight"
+    document.getElementById("btnAgregarCat").style.visibility="visible"
+    document.getElementById("btnFav").style.visibility="visible"
+    document.getElementById("bodyMain").style.overflowY="scroll"
+}
+
+function imprimeFav(array){
+    divFav.innerHTML=``
+    if (array.length == 0 || !localStorage.getItem("arrayFav")){
+        let nuevoDivFav = document.createElement("div")
+        nuevoDivFav.className = "subtitulo2"
+        nuevoDivFav.innerHTML = `No tenés favoritos aún`
+        divFav.appendChild(nuevoDivFav)
+    }else{
+        for (let peli of array){
+            let nuevoDivFav = document.createElement("div")
+            nuevoDivFav.className = "movieCardFav"
+            nuevoDivFav.innerHTML = `<div class="dataMovieFav" id="${peli.id}">
+                                    <div class="imagenMovieFav">
+                                        <img id="imagen${peli.id}Fav" src="./${peli.image}" alt="logo ${peli.title}" width="80%">
+                                    </div>
+                                    <div class="containerDataFav">
+                                        <div class="barraDataFav">
+                                            <div class="movieTitleFav" >
+                                                <h4>${peli.title}</h4>
+                                                <h5>${peli.director}</h5>
+                                                <h5>${peli.year}</h5>
+                                                <h6>${peli.val}% Rotten Tomatoes</h6>
+                                            </div>
+                                            <div class="botonBorraFav" >
+                                                <label id="borraFav${peli.id}" class="material-symbols-outlined">close</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`
+            divFav.appendChild(nuevoDivFav)
+
+            let btnBorraFav = document.getElementById(`borraFav${peli.id}`)
+            btnBorraFav.onclick = () => {
+                borraFav(peli.title)
+            }
+        }
+    }
+}
+
+function borraFav(indic){
+    arrayFav = arrayFav.filter((element) => element.title != indic)
+    localStorage.setItem("arrayFav", JSON.stringify(arrayFav))
+    imprimeFav(arrayFav)
+    Toastify({
+        text: `'${indic}' fue borrado de favoritos`,
+        duration: 3000,
+        position: "left", // `left`, `center` or `right`
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+          fontSize:"30px",
+        },
+      }).showToast();
 }

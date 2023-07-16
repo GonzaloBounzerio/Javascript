@@ -2,7 +2,7 @@
 //muestra trailer
 
 function abreTrailer(indic){     
-    const data = arrayFullEnLS.find((array) => array.id == indic)
+    const data = arrayAllMovies.find((array) => array.id == indic)
     window.scroll({
         top: 0,
         behavior: 'smooth'

@@ -27,29 +27,43 @@
                         <span id="iconoBusqueda" class="material-symbols-outlined">search</span>
                     </form>
                 </div>
-                <div id="lateralNav">
-                    <div class="cerrarSideNav">
-                        <div class="botonCerrarSide">
-                            <span id="btnCerrarSideNav" class="material-symbols-outlined">close</span>
-                        </div>
-                    </div>
-                    <div id="opcionesLateral">
-                        <!-- opciones mincard -->
-                    </div>
-                </div>
             </div>
         </div>
     </header>
     <main class="containerMain">
-        <div class="catalogoVer">
-            <a href=".//pages/catalogo.html">
-                <h3 class="subtitulo">Ver catálogo completo</h3>
-            </a>
-        </div>
-        <div class="fav">
-            <h3 class="subtitulo">Favoritos:</h3>
-            <div id="containerFav">
+        <div class="containerMovies">
+            <div class="dataContainerIndex">
+                <h3 class="subtitulo">Catálogo:</h3>
+                <select id="selectorOrden">
+                    <option selected disabled>Ordena las películas:</option>
+                    <option value="1">Alfabeticamente</option>
+                    <option value="2">Año de estreno</option>
+                    <option value="3">Valoración RottenTomatoes</option>
+                </select>
+            </div>
+            <div id="containerIndex">
                 <!-- aca irian los frames de movies -->
+            </div>
+            <div class="containerBtnAdd">
+                <a href="./pages/agregaMovie.html">
+                    <label id="btnAgregarCat" class="material-symbols-outlined">add</label>
+                </a>
+            </div>
+            <div class="containerBtnFav">
+                <label id="btnFav" class="material-symbols-outlined">favorite</label>
+            </div>
+            <div id="pantallaEmergenteFavs">
+                <div class="pantallaItemsFav">
+                    <div class="dataFavs"> 
+                        <h3 class="subtitulo">Favoritos:</h3>
+                        <div id="cierraVentanaFavs">
+                            <span class="material-symbols-outlined">close</span>
+                        </div>
+                    </div>
+                    <div id="containerFav">
+
+                    </div>
+                </div>
             </div>
         </div>
     </main>

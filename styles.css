@@ -41,6 +41,9 @@ div{
     background-color: rgba(240, 255, 255, 0.425);
     border-radius: 20px;
     padding: 10px;
+    height: 60px;
+    display: flex;
+    align-items: center;
 }
 
 .buscador{
@@ -56,77 +59,12 @@ div{
 #inputBusqueda{
     width: 200px;
     z-index: 10;
-}
-
-#btnCerrarSideNav{
-    position: fixed
-}
-
-.botonCerrarSide{
-    position: absolute;
-    left: 0;
+    height: 30px;
 }
 
 .formBuscador{
     display: flex;
-}
-
-#lateralNav{
-    display: none;
-    position: absolute;
-    background-color: rgba(240, 255, 255, 0.582);
-    width: 275px;
-    top: 0;
-    height: auto;
-    max-height: 65vh;
-    border-radius: 20px;
-    z-index: 9;
-    overflow-y:scroll;
-    overflow-x: hidden;
-}
-
-.cerrarSideNav{
-    position: absolute;
-    right: 30px;
-    top: -10px;
-}
-
-#opcionesLateral{
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-}
-
-.minMovieCard{
-    background-color: rgba(240, 248, 255, 0.767);
-    display: flex;
-    flex-direction: row;
     align-items: center;
-    width: 90%;
-    padding: 0 10px;
-    border-radius: 15px;
-}
-
-
-.imagenMiniCard{
-    margin: 0;
-    width: 30%;
-}
-
-.imagenMiniCard img{
-    width: 60px;
-}
-
-.dataMiniCard{
-    width: 70%;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-}
-
-.btnMiniCard{
-    position: relative;
-    right: 10;
 }
 
 .tituloHeader{
@@ -135,9 +73,12 @@ div{
     text-shadow: -2px 7px 4px rgb(0, 0, 0);
 }
 
-.fav{
+.dataContainerIndex{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
 }
 
 .subtitulo{
@@ -146,6 +87,14 @@ div{
     color: rgb(230, 191, 87);
     text-shadow: -2px 7px 4px rgb(0, 0, 0);
     display: inline;
+}
+
+.subtitulo2{
+    font-size: 50px;
+    font-style: italic;
+    margin-top: 0;
+    color: rgb(230, 191, 87);
+    text-shadow: -2px 7px 4px rgb(0, 0, 0);
 }
 
 .movieCard{
@@ -197,7 +146,7 @@ div{
     text-align: center;
 }
 
-#containerFav{
+#containerIndex{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -212,27 +161,8 @@ div{
     font-size: 50px;
 }
 
-#catalogoFull{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap:wrap;
-}
-
 #btnAyuda{
     color: aliceblue;
-}
-
-.containerMovies{
-    display: flex;
-    flex-direction: row;
-}
-
-.subtituloCatalogo{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
 }
 
 #selectorOrden{
@@ -240,21 +170,61 @@ div{
     font-size: 25px;
 }
 
+.containerBtnAdd{
+    z-index: 0;
+    position: fixed;
+    width: 0;
+    height: 100%;
+    top:0;
+    right: 50px;
+}
+
+.containerBtnFav{
+    z-index: 0;
+    position: fixed;
+    width: 0;
+    height: 100%;
+    top:0;
+    left: 0;
+}
+
 #btnAgregarCat{
-    font-size: 40px;
+    color: black;
     position: sticky;
+    font-size: 60px;
     top:500px;
-    right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
     border-radius: 100%;
     background-color: aliceblue;
 }
 
 #btnAgregarCat:hover{
+    color: orange;
+    box-shadow: 10px 15px 32px 1px rgba(0,0,0,0.66);
+-webkit-box-shadow: 10px 15px 32px 1px rgba(0,0,0,0.66);
+-moz-box-shadow: 10px 15px 32px 1px rgba(0,0,0,0.66);
+}
+
+#btnFav{
+    color: black;
+    position: sticky;
+    font-size: 60px;
+    top:500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    background-color: aliceblue;
+}
+
+#btnFav:hover{
+    color: red;
     box-shadow: 10px 15px 32px 1px rgba(0,0,0,0.66);
 -webkit-box-shadow: 10px 15px 32px 1px rgba(0,0,0,0.66);
 -moz-box-shadow: 10px 15px 32px 1px rgba(0,0,0,0.66);
@@ -331,3 +301,75 @@ div{
     justify-content: space-between;
     align-items: center;
 }
+
+#pantallaEmergenteFavs{
+    z-index: 12;
+    background-color: rgba(115, 143, 167, 0.61);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    visibility: hidden;
+}
+
+.pantallaItemsFav{
+    border-radius: 25px;
+    background-color: rgb(194, 207, 219);
+    width: 100%;
+    height: 100%;
+}
+
+.dataFavs{
+    margin: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dotted rgb(167, 107, 18);
+}
+
+#containerFav{
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap ;
+    overflow-x: scroll;
+}
+
+.movieCardFav{
+    border: 1px dotted rgb(220, 243, 91);
+    width: 400px;
+    height: 270px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(240, 248, 255, 0.603);
+}
+
+.dataMovieFav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagenMovieFav{
+    text-align: center;
+    width: 200px;
+    margin: 0;
+}
+
+.containerDataFav{
+    margin: 0;
+    font-size: 20px;
+}
+
+
+
