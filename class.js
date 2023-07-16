@@ -146,6 +146,10 @@ class fileMovie {
 //agregado de movies
 
 function agregaMoviesCat(){
+    let agregados = []
+    if (localStorage.getItem("agregados")){
+        agregados = JSON.parse(localStorage.getItem("agregados"))
+    }
     let formAgrega = document.getElementById("formularioAgregaMovie")
     formAgrega.onsubmit = (event) => {
         event.preventDefault()
@@ -156,7 +160,6 @@ function agregaMoviesCat(){
         let valoracionMovie = document.getElementById("inputValoracion")
         let nuevoID = JSON.parse(localStorage.getItem("arrayFull"))
         const nuevaMovie = new fileMovie(nuevoID.length+1,nombreMovie.value,"assets/img/default.png",directorMovie.value,estrenoMovie.value,trailerMovie.value,valoracionMovie.value)
-        let agregados = []
         agregados.push(nuevaMovie)
         Toastify({
             text: `"${nombreMovie.value}" se ha agregado al catálogo`,
