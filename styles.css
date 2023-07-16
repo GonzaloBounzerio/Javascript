@@ -19,6 +19,7 @@ footer p{
     bottom: 0;
     width: 100%;
     background-color: azure;
+    z-index: 0;
 }
 
 a{
@@ -90,11 +91,11 @@ div{
 }
 
 .subtitulo2{
-    font-size: 50px;
+    font-size: 45px;
     font-style: italic;
     margin-top: 0;
-    color: rgb(230, 191, 87);
-    text-shadow: -2px 7px 4px rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    text-shadow: -2px 7px 4px rgb(141, 141, 141);
 }
 
 .movieCard{
@@ -192,7 +193,7 @@ div{
     color: black;
     position: sticky;
     font-size: 60px;
-    top:500px;
+    top:450px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -213,7 +214,7 @@ div{
     color: black;
     position: sticky;
     font-size: 60px;
-    top:500px;
+    top: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
